@@ -22,25 +22,34 @@ bool checkPush(int pinNumber)
   int buttonPushed = digitalRead(pinNumber); 
   return buttonPushed == LOW;
 }
-
+//maxOptions = 5
+//buffer = 0
 ICACHE_RAM_ATTR void upButtonPressed() {
   long now = millis();
   if(now - lastInterrupt > noiseRed) 
   {    
-    if (selected<7)
+    if (entered == -1 && selected < 6) {
       selected++;
+      if(selected == maxOptions + buffer)
+        buffer++;
+    }
     lastInterrupt = now;
   }
 }
+
 ICACHE_RAM_ATTR void downButtonPressed() {
   long now = millis();
   if(now - lastInterrupt > noiseRed)
   {    
-    if (selected>-1)
+    if (entered == -1 && selected > -1) {
+      if(selected == buffer && selected > 0)
+        buffer--;
       selected--;
+    }
     lastInterrupt = now;
   }
 }
+
 ICACHE_RAM_ATTR void okButtonPressed() {
   long now = millis();
   if(now - lastInterrupt > noiseRed)
@@ -49,6 +58,7 @@ ICACHE_RAM_ATTR void okButtonPressed() {
     lastInterrupt = now;
   }
 }
+
 ICACHE_RAM_ATTR void backButtonPressed() {
   long now = millis();
   if(now - lastInterrupt > noiseRed)
