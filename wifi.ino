@@ -77,4 +77,6 @@ void checkWifi(){
     if(wifiDisconnected)
       connectToWifi(false);
   }
+          handleAp();
+
 }

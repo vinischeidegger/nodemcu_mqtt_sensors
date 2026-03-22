@@ -177,6 +177,17 @@ img.loading{
   </div>
 </div>
 <script>
+  function fetchData() {
+    fetch('/status')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('mainContent').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        document.getElementById('mainContent').innerHTML = '<p>Error loading data.</p>';
+      });
+  }
   function myFunction() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
@@ -185,4 +196,5 @@ img.loading{
       x.className = "topnav";
     }
   }
+  fetchData();
 </script></body></html>

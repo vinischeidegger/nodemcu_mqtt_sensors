@@ -123,7 +123,6 @@ void displaymenu(void) {
         } else {
           display.print("Connected!");
         }
-        handleAp();
       }
     }
   } 

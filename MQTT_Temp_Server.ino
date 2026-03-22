@@ -4,8 +4,8 @@
 #include <AsyncMqttClient.hpp>
 #include <DallasTemperature.h>
 #include <DNSServer.h>
-//#include <ESPAsyncTCP.h>
-#include <ESP8266WebServer.h>
+#include <ESPAsyncTCP.h>
+#include <ESPAsyncWebServer.h>
 #include <ESP8266WiFi.h>
 #include <LittleFS.h>
 #include <OneWire.h>
@@ -37,7 +37,7 @@ DallasTemperature sensors(&oneWireBus);
 const char *softAP_ssid = "ESP_ap";
 const char *softAP_password = "12345678";
 // Web server
-ESP8266WebServer server(80);
+AsyncWebServer server(80);
 // DNS server
 const byte DNS_PORT = 53;
 DNSServer dnsServer;
